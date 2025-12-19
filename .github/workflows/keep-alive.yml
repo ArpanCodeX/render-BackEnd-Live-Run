@@ -2,7 +2,7 @@ name: Keep Render App Alive
 
 on:
   schedule:
-    - cron: "* * * * *"   # runs every minute (maximum allowed)
+    - cron: "* * * * *"   # runs every minute
   workflow_dispatch:
 
 jobs:
@@ -11,6 +11,14 @@ jobs:
     steps:
       - name: Ping Render App twice
         run: |
+          echo "🔔 First ping started"
           curl -s -o /dev/null https://bike-showroom-management-new.onrender.com/
+          echo "✅ First ping done"
+
           sleep 5
+
+          echo "🔔 Second ping started"
           curl -s -o /dev/null https://bike-showroom-management-new.onrender.com/
+          echo "✅ Second ping done"
+
+          echo "🚀 Render app is alive"
